@@ -119,3 +119,5 @@ php artisan key:generate
 #OUTSIDE OF VAGRANT ON YOUR NORMAL OS:
 #sudo chmod -R 777 /PATH/TO/LARAVEL/storage
 # CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+# GRANT ALL PRIVILEGES ON * . * TO 'larva'@'localhost';
+# FLUSH PRIVILEGES;
