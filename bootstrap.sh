@@ -23,13 +23,23 @@ echo "ServerName localhost" > /etc/apache2/httpd.conf
 # Setup hosts file
 VHOST=$(cat <<EOF
 <VirtualHost *:80>
-  DocumentRoot "/vagrant/public"
-  ServerName localhost
-  <Directory "/vagrant/public">
-    AllowOverride All
-    Require all granted
-  </Directory>
+
+        ServerName localhost
+        DocumentRoot /var/www/laravel/public
+
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride None
+        </Directory>
+        <Directory /var/www/laravel>
+                AllowOverride All
+        </Directory>
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        LogLevel warn
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
+
 EOF
 )
 echo "${VHOST}" > /etc/apache2/sites-enabled/000-default.conf
@@ -87,6 +97,12 @@ cd /var/www
 git clone https://github.com/laravel/laravel.git
 cd /var/www/laravel
 composer install
+#create storage folder
+mkdir /var/www/laravel/app/storage
+#permissions
+chown -R www-data.www-data /var/www/laravel
+chmod -R 755 /var/www/laravel
+chmod -R 777 /var/www/laravel/app/storage
 # Set up the database
 echo "CREATE DATABASE IF NOT EXISTS laravel" | mysql
 echo "CREATE USER 'laravel'@'localhost' IDENTIFIED BY 'your_password'" | mysql
