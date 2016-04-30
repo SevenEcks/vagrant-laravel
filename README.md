@@ -1,4 +1,4 @@
 vagrant-laravel (DEPRECATED)
 ===============
 
-A simple set up script for provisioning Vagrant for Laravel
+Semi-manual sets for setting up Laravel5 on Ubuntu 14.04
