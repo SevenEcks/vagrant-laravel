@@ -84,10 +84,12 @@ mv composer.phar /usr/local/bin/composer
 # -------------
 # Load Composer packages
 cd /var/www
-composer install --dev
+git clone https://github.com/laravel/laravel.git
+cd /var/www/laravel
+composer install
 # Set up the database
-echo "CREATE DATABASE IF NOT EXISTS your_database" | mysql
-echo "CREATE USER 'your_username'@'localhost' IDENTIFIED BY 'your_password'" | mysql
-echo "GRANT ALL PRIVILEGES ON your_database.* TO 'your_username'@'localhost' IDENTIFIED BY 'your_password'" | mysql
+echo "CREATE DATABASE IF NOT EXISTS laravel" | mysql
+echo "CREATE USER 'laravel'@'localhost' IDENTIFIED BY 'your_password'" | mysql
+echo "GRANT ALL PRIVILEGES ON your_database.* TO 'laravel'@'localhost' IDENTIFIED BY 'your_password'" | mysql
 # Set up the database
 php artisan migrate
