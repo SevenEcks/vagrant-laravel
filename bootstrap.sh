@@ -97,15 +97,24 @@ cd /var/www
 git clone https://github.com/laravel/laravel.git
 cd /var/www/laravel
 composer install
-#create storage folder
-mkdir /var/www/laravel/app/storage
 #permissions
 chown -R www-data.www-data /var/www/laravel
 chmod -R 755 /var/www/laravel
-chmod -R 777 /var/www/laravel/app/storage
+chmod -R 777 /var/www/laravel/storage
+#create .env file
+echo "" > /var/www/laravel/.env
 # Set up the database
 echo "CREATE DATABASE IF NOT EXISTS laravel" | mysql
 echo "CREATE USER 'laravel'@'localhost' IDENTIFIED BY 'your_password'" | mysql
 echo "GRANT ALL PRIVILEGES ON your_database.* TO 'laravel'@'localhost' IDENTIFIED BY 'your_password'" | mysql
 # Set up the database
 php artisan migrate
+#encryption
+#has to be done manually
+php artisan key:generate
+#Application key [uOHTNu3Au1Kt7Uloyr2Py9blU0J5XQ75] set successfully.
+#edit config/app.php
+#debuging / development
+#'env' => env('APP_ENV', 'development'),
+#OUTSIDE OF VAGRANT ON YOUR NORMAL OS:
+#sudo chmod -R 777 /PATH/TO/LARAVEL/storage
