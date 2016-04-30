@@ -118,3 +118,4 @@ php artisan key:generate
 #'env' => env('APP_ENV', 'development'),
 #OUTSIDE OF VAGRANT ON YOUR NORMAL OS:
 #sudo chmod -R 777 /PATH/TO/LARAVEL/storage
+# CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
