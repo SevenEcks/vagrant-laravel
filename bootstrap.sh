@@ -44,7 +44,7 @@ apt-get install -y libapache2-mod-php5
 # Add add-apt-repository binary
 apt-get install -y python-software-properties
 # Install PHP 5.4
-add-apt-repository ppa:ondrej/php5
+sudo add-apt-repository ppa:ondrej/php5-5.6
 # Update
 apt-get update
 
